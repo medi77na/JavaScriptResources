@@ -168,3 +168,21 @@ let telefono = {
 /** ------------ XXX ------------ */
 console.log(telefono.sistemaOperativo);
 
+/** ------------ XXXI ------------ */
+telefono.memoriaRam = 8;
+
+/** ------------ XXXII ------------ */
+let animal = {
+    tipo:"canino",
+    sonido:"Guaf"
+}
+
+/** ------------ XXXIII ------------ */
+console.log(animal.sonido);
+
+/** ------------ XXXIV ------------ */
+animal.descripcion = function () {
+    console.log(`Animal, tipo: ${this.tipo}, sonido: ${this.sonido}`);
+}
+animal.descripcion();
+
