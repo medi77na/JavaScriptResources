@@ -55,6 +55,8 @@
 // console.info(Object.keys(coderRiwi));//Muestra solo las claves del objeto
 // console.info(Object.values(coderRiwi));//Muestra solo los valores del objeto
 
+// console.log("Hola Mateo: ",coderRiwi.id);
+
 // Object.keys(coderRiwi).forEach(key =>{
 //     console.log(coderRiwi[key]);
 // })
@@ -74,62 +76,69 @@
 
 /** ------------------- IV -------------------- */
 
-// listaEmpleados = [
-//     {
-//         nombre: "Juan Pérez",
-//         edad: 30,
-//         puesto: "Desarrollador de Software",
-//         salario: 50000
-//     },
-//     {
-//         nombre: "María García",
-//         edad: 28,
-//         puesto: "Diseñadora Gráfica",
-//         salario: 45000
-//     },
-//     {
-//         nombre: "Luis Ramírez",
-//         edad: 35,
-//         puesto: "Gerente de Proyectos",
-//         salario: 60000
-//     },
-//     {
-//         nombre: "Ana Martínez",
-//         edad: 32,
-//         puesto: "Analista de Negocios",
-//         salario: 55000
-//     }
-// ]
-// listaEmpleados.forEach(empleado => {
-//     document.writeln(`${empleado.nombre}`)
-//     console.info(`${empleado.nombre}`)
-// })
-
-numeros = []
-pares = []
-paresv2 = []
-
-// for(let i = 0; i <= 100 ; i++) {
-//     numeros.push(i);
-// }
-// console.log(numeros);
-
-for(let i = 0; i <= 100 ; i++) {
-    if (i%2==0) {
-        paresv2.push(i)
+listaEmpleados = [
+    {
+        nombre: "Juan Pérez",
+        edad: 30,
+        puesto: "Desarrollador de Software",
+        salario: 50000
+    },
+    {
+        nombre: "María García",
+        edad: 28,
+        puesto: "Diseñadora Gráfica",
+        salario: 45000
+    },
+    {
+        nombre: "Luis Ramírez",
+        edad: 35,
+        puesto: "Gerente de Proyectos",
+        salario: 60000
+    },
+    {
+        nombre: "Ana Martínez",
+        edad: 35,
+        puesto: "Analista de Negocios",
+        salario: 55000
     }
-    numeros.push(i);
+]
+listaEmpleados.forEach(empleado => {
+    // document.writeln(`${empleado.nombre}`)
+    // console.info(`${empleado.nombre}`)
+    if (empleado.edad == 35) {
+        console.log(empleado);
+    }
+})
+
+for (const mateo in listaEmpleados) {
+    console.log(mateo);
 }
 
-numeros.forEach(element => {
-    if (element%2==0) {
-        pares.push(element)
-    }
-});
+// numeros = []
+// pares = []
+// paresv2 = []
 
-console.log(numeros);
-console.log(pares);
-console.log(paresv2);
+// // for(let i = 0; i <= 100 ; i++) {
+// //     numeros.push(i);
+// // }
+// // console.log(numeros);
 
-// .map: Recorre y guarda en una variable
-// .filter: filtra según la condición
+// for(let i = 0; i <= 100 ; i++) {
+//     if (i%2==0) {
+//         paresv2.push(i)
+//     }
+//     numeros.push(i);
+// }
+
+// numeros.forEach(element => {
+//     if (element%2==0) {
+//         pares.push(element)
+//     }
+// });
+
+// console.log(numeros);
+// console.log(pares);
+// console.log(paresv2);
+
+// // .map: Recorre y guarda en una variable
+// // .filter: filtra según la condición
