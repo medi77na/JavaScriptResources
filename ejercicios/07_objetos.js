@@ -186,3 +186,36 @@ animal.descripcion = function () {
 }
 animal.descripcion();
 
+/** ------------ XXXV ------------ */
+let vuelo = {
+    aerolinea: "Avianca",
+    numeroVuelo: 189237,
+    origen: "Bogotá",
+    horaSalida: "12:00"
+}
+
+/** ------------ XXXVI ------------ */
+console.log(`Aerolinea: ${vuelo.aerolinea}, número de vuelo: ${vuelo.numeroVuelo}`);
+
+/** ------------ XXXVII ------------ */
+vuelo.destino= "Lima";
+
+/** ------------ XXXVIII ------------ */
+let jugador = {
+    nombre:"David",
+    apellido:"Medina",
+    edad:20,
+    equipo:"Real Madrid",
+    posicion:"Delantero"
+}
+
+/** ------------ XXXIX ------------ */
+console.log(`Nombre del jugador: ${jugador.nombre}, equipo: ${jugador.equipo}`);
+
+/** ------------ XL ------------ */
+jugador.conocerPosicion= function () {
+    console.log(`La posición del jugador es: ${this.posicion}`);
+}
+
+console.log(jugador);
+console.log(jugador.conocerPosicion());
