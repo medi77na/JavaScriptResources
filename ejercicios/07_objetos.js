@@ -219,3 +219,4 @@ jugador.conocerPosicion= function () {
 
 console.log(jugador);
 console.log(jugador.conocerPosicion());
+console.log()
