@@ -7,8 +7,8 @@ let mascotas = [
         peso: 20,
         estado: "estable",
         nombrePropietario: "David Medina",
-        documentoPropietario: "123456789",
-        telefonoPropietario: "123456789",
+        documentoPropietario: "12345",
+        telefonoPropietario: "54321",
         correoPropietario: "davidmedina@gmail.com"
     },
     {
@@ -19,7 +19,7 @@ let mascotas = [
         peso: 25,
         estado: "crítico",
         nombrePropietario: "Laura González",
-        documentoPropietario: "987654321",
+        documentoPropietario: "987",
         telefonoPropietario: "987654321",
         correoPropietario: "lauragonzalez@gmail.com"
     },
@@ -42,10 +42,10 @@ let mascotas = [
         edad: 4,
         peso: 30,
         estado: "crítico",
-        nombrePropietario: "Ana Martínez",
-        documentoPropietario: "234567890",
-        telefonoPropietario: "234567890",
-        correoPropietario: "anamartinez@gmail.com"
+        nombrePropietario: "David Medina",
+        documentoPropietario: "12345",
+        telefonoPropietario: "54321",
+        correoPropietario: "davidmedina@gmail.com"
     },
     {
         nombre: "Simba",
@@ -66,10 +66,10 @@ let mascotas = [
         edad: 2,
         peso: 18,
         estado: "crítico",
-        nombrePropietario: "Juan Pérez",
-        documentoPropietario: "456789012",
-        telefonoPropietario: "456789012",
-        correoPropietario: "juanperez@gmail.com"
+        nombrePropietario: "David Medina",
+        documentoPropietario: "12345",
+        telefonoPropietario: "54321",
+        correoPropietario: "davidmedina@gmail.com"
     },
     {
         nombre: "Coco",
@@ -78,10 +78,10 @@ let mascotas = [
         edad: 2,
         peso: 5,
         estado: "estable",
-        nombrePropietario: "Luisa Gómez",
-        documentoPropietario: "890123456",
-        telefonoPropietario: "890123456",
-        correoPropietario: "luisagomez@gmail.com"
+        nombrePropietario: "Laura González",
+        documentoPropietario: "987",
+        telefonoPropietario: "987654321",
+        correoPropietario: "lauragonzalez@gmail.com"
     },
     {
         nombre: "Bella",
@@ -128,15 +128,8 @@ console.log("BIENVENIDOS AL SISTEMA DE GESTIÓN DE MASCOTAS");
 
 //Función para mostrar el menú
 function mostrarMenu() {
-    let option = parseInt(prompt("MENÚ DE OPCIONES:\n\n1. Listar mascotas.\n2. Agregar mascota.\n3. Editar mascota.\n4. Eliminar mascota.\n5. Salir.\nIngrese una opción: "));
+    let option = parseInt(prompt("MENÚ DE OPCIONES:\n\n1. Agregar mascota.\n2. Listar mascotas.\n3. Listar dueños.\n4. Listar mascotas con mismo dueño.\n5. Actualizar mascota.\n6. Buscar mascota.\n7. Eliminar mascota.\n8. Salir.\nIngrese una opción: "));
     return option;
-}
-
-//Función para listar las mascotas
-function listarMascotas(arrayMascotas) {
-    for (const mascota of arrayMascotas) {
-        console.log(mascota);
-    }
 }
 
 //Función para agregar una mascotas
@@ -145,12 +138,12 @@ function agregarMascota(arrayMascotas) {
         nombre: prompt("Ingrese el nombre de la mascota: "),
         especie: prompt("Ingrese la especie de la mascota: "),
         raza: prompt("Ingrese la raza de la mascota: "),
-        // edad: edad,
-        peso: parseInt(prompt("Ingrese el peso de la mascota: ")),
+        edad: definirEdad(),
+        peso: parseInt(prompt("Ingrese el peso de la mascota en kg: ")),
         estado: definirEstadoMascota(),
         nombrePropietario: prompt("Ingrese el nombre del propietario de la mascota: "),
         documentoPropietario: prompt("Ingrese el documento del propietario de la mascota: "),
-        telefonoPropietario: prompt("Ingrese el telefono del propietario de la mascota: "),
+        telefonoPropietario: prompt("Ingrese el teléfono del propietario de la mascota: "),
         correoPropietario: prompt("Ingrese el correo del propietario de la mascota: ")
     })
     return arrayMascotas
@@ -178,16 +171,112 @@ function definirEstadoMascota() {
 }
 
 //Función para definir la edad de la mascota
-let fechaNacimiento = new Date (prompt("Ingrese la fecha de necimiento en formato mm/dd/yyyy"));
-let fechaActual = new Date();
-let edad =  fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-if (fechaActual.getMonth() < fechaNacimiento.getMonth) {
-    edad--;
-}
-if (fechaActual.getDate() < fechaNacimiento.getDate()) {
-    edad--;
+function definirEdad() {
+    let fechaNacimiento = new Date(prompt("Ingrese la fecha de nacimiento en formato mm/dd/yyyy"));
+    let fechaActual = new Date();
+    console.log(fechaActual);
+    console.log(fechaNacimiento);
+
+    //Datos de nacimiento
+    let anoNacimiento = fechaNacimiento.getFullYear();
+    let mesNacimiento = fechaNacimiento.getMonth();
+    let diaNacimiento = fechaNacimiento.getDate();
+
+    //Datos actuales
+    let anoActual = fechaActual.getFullYear();
+    let mesActual = fechaActual.getMonth();
+    let diaActual = fechaActual.getDate();
+
+    let edad = anoActual - anoNacimiento;
+    if ((mesActual < mesNacimiento) || ((mesActual < mesNacimiento) && (diaActual < diaNacimiento) || ((mesActual == mesNacimiento) && (diaActual < diaNacimiento)))) {
+        edad--;
+    }
+    return edad
 }
 
+//Función para listar mascotas
+function listarMascotas(arrayMascotas) {
+    arrayMascotas.forEach(function (mascota, i) {
+        console.log(
+            `Mascota # ${i + 1}:
+            Nombre: ${mascota.nombre},
+            Especie: ${mascota.especie},
+            Raza: ${mascota.raza},
+            Edad: ${mascota.edad},
+            Estado: ${mascota.estado}.`
+        );
+    });
+}
+
+//Función para listar dueños
+function listarDuenos(arrayMascotas) {
+    arrayMascotas.forEach(function (dueno, i) {
+        console.log(
+            `Dueño # ${i + 1}:
+            Nombre: ${dueno.nombrePropietario},
+            Documento: ${dueno.documentoPropietario},
+            Teléfono: ${dueno.telefonoPropietario},
+            Email: ${dueno.correoPropietario}`
+        );
+    });
+}
+
+//Función para mostrar mascotas con mismo dueño
+function identificarMascotasMismoDueno(arrayMascotas) {
+    let mascotasPorDueno = {};
+
+    // Iterar sobre las mascotas y agruparlas por documento del propietario
+    arrayMascotas.forEach(mascota => {
+        if (mascotasPorDueno[mascota.documentoPropietario]) {
+            mascotasPorDueno[mascota.documentoPropietario].push(mascota.nombre);
+        } else {
+            mascotasPorDueno[mascota.documentoPropietario] = [mascota.nombre];
+        }
+    });
+
+    // Mostrar los nombres del propietario y las mascotas asociadas
+    for (const documento in mascotasPorDueno) {
+        const mascotas = mascotasPorDueno[documento];
+        console.log(`Dueño: ${documento}, Mascotas: ${mascotas.join(', ')}`);
+    }
+}
+
+//Función para buscar mascota por el nombre
+function buscarMascota(arrayMascotas) {
+    let nombre = prompt("Digite el nombre de la mascota que desea buscar: ");
+    let existencia = false;
+    arrayMascotas.forEach(mascota => {
+        if (mascota.nombre.toLowerCase() == nombre.toLowerCase()) {
+            existencia = true;
+        }
+    });
+    if (existencia == true) {
+        console.log("La mascota se encuentra en la BD de la veterinaria.");
+    } else {
+        console.log("La mascota no se encuentra registrada en la BD de la veterinaria.");
+    }
+}
+
+//Función para actualizar información
+function actualizarInformación(arrayMascotas) {
+    listarMascotas(arrayMascotas);
+    let optionMascota = parseInt(prompt("Digite el número de la mascota que desea actualizar: "))
+    console.log("Digite la opción que desea actualizar: ");
+    let claves = Object.keys(arrayMascotas[0])
+    claves.forEach(function (clave, i) {
+        console.log(`${i + 1}. ${(clave.replace(/([a-z])([A-Z])/g, '$1 $2')).toLocaleLowerCase()}`);
+    });
+    let opcionActualizar = parseInt(prompt("Digite la opción que desea actualizar: "))
+    claves[opcionActualizar-1]
+
+}
+
+//Función para eliminar mascotas
+function eliminarMascota(arrayMascotas) {
+    listarMascotas(arrayMascotas);
+    let opcion = parseInt(prompt("Digite el número de la mascota a eliminar: "))
+    arrayMascotas.splice((opcion - 1), 1);
+}
 
 //Definicion de variables globales
 let option;
@@ -196,24 +285,38 @@ do {
     option = mostrarMenu()
     switch (option) {
         case 1:
+            console.log("Agrega Mascotas");
+            agregarMascota(mascotas);
+            break;
+        case 2:
             console.log("Lista Mascotas");
             listarMascotas(mascotas);
             break;
-        case 2:
-            console.log("Agrega Mascotas");
-            agregarMascota(mascotas);
-
-            break;
         case 3:
-            console.log("Edita Mascota");
+            console.log("Lista Dueños");
+            listarDuenos(mascotas);
             break;
         case 4:
-            console.log("Elimina Mascota");
+            console.log("Lista mascotas dueños repetidos");
+            identificarMascotasMismoDueno(mascotas)
             break;
         case 5:
+            console.log("Actualizar Mascota");
+            actualizarInformación(mascotas)
+            break;
+        case 6:
+            console.log("Buscar Mascota");
+            buscarMascota(mascotas)
+            break;
+        case 7:
+            console.log("Eliminar Mascota");
+            eliminarMascota(mascotas)
+            break;
+        case 8:
             console.log("Salir del programa");
             break;
         default:
+            console.error("OPCIÓN INVÁLIDA, DIGITE NUEVAMENTE.")
             break;
     }
-} while (option != 5);
+} while (option != 8);
