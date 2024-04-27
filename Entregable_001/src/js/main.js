@@ -124,23 +124,85 @@ let mascotas = [
 //INICIO DE LÓGICA DE PROGRAMA
 console.log("BIENVENIDOS AL SISTEMA DE GESTIÓN DE MASCOTAS");
 
+//DEFINICIÓN DE FUNCIONES
+
 //Función para mostrar el menú
 function mostrarMenu() {
     let option = parseInt(prompt("MENÚ DE OPCIONES:\n\n1. Listar mascotas.\n2. Agregar mascota.\n3. Editar mascota.\n4. Eliminar mascota.\n5. Salir.\nIngrese una opción: "));
     return option;
 }
 
-//Definicion de variable globales
-let option
+//Función para listar las mascotas
+function listarMascotas(arrayMascotas) {
+    for (const mascota of arrayMascotas) {
+        console.log(mascota);
+    }
+}
+
+//Función para agregar una mascotas
+function agregarMascota(arrayMascotas) {
+    arrayMascotas.push({
+        nombre: prompt("Ingrese el nombre de la mascota: "),
+        especie: prompt("Ingrese la especie de la mascota: "),
+        raza: prompt("Ingrese la raza de la mascota: "),
+        // edad: edad,
+        peso: parseInt(prompt("Ingrese el peso de la mascota: ")),
+        estado: definirEstadoMascota(),
+        nombrePropietario: prompt("Ingrese el nombre del propietario de la mascota: "),
+        documentoPropietario: prompt("Ingrese el documento del propietario de la mascota: "),
+        telefonoPropietario: prompt("Ingrese el telefono del propietario de la mascota: "),
+        correoPropietario: prompt("Ingrese el correo del propietario de la mascota: ")
+    })
+    return arrayMascotas
+}
+
+//Función para definir el estado de la mascota
+function definirEstadoMascota() {
+    let option;
+    let estadoMascota;
+    do {
+        option = parseInt(prompt("Digite la opción que indique el estado de la mascota: \n1. Crítico. \n2. Estable."));
+        switch (option) {
+            case 1:
+                estadoMascota = "Crítico";
+                break;
+            case 2:
+                estadoMascota = "Estable";
+                break;
+            default:
+                console.error("Respuesta incorrecta, digite nevamente la opción.")
+                break;
+        }
+    } while ((option != 1) && (option != 2));
+    return estadoMascota;
+}
+
+//Función para definir la edad de la mascota
+let fechaNacimiento = new Date (prompt("Ingrese la fecha de necimiento en formato mm/dd/yyyy"));
+let fechaActual = new Date();
+let edad =  fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+if (fechaActual.getMonth() < fechaNacimiento.getMonth) {
+    edad--;
+}
+if (fechaActual.getDate() < fechaNacimiento.getDate()) {
+    edad--;
+}
+
+
+//Definicion de variables globales
+let option;
 
 do {
     option = mostrarMenu()
     switch (option) {
         case 1:
-            console.log(mascotas);
+            console.log("Lista Mascotas");
+            listarMascotas(mascotas);
             break;
         case 2:
             console.log("Agrega Mascotas");
+            agregarMascota(mascotas);
+
             break;
         case 3:
             console.log("Edita Mascota");
@@ -154,4 +216,4 @@ do {
         default:
             break;
     }
-} while(option != 5);
+} while (option != 5);
