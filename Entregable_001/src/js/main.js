@@ -234,10 +234,12 @@ function identificarMascotasMismoDueno(arrayMascotas) {
         }
     });
 
-    // Mostrar los nombres del propietario y las mascotas asociadas
+    // Mostrar los nombres del propietario y las mascotas asociadas solo si tienen más de una mascota
     for (const documento in mascotasPorDueno) {
         const mascotas = mascotasPorDueno[documento];
-        console.log(`Dueño: ${documento}, Mascotas: ${mascotas.join(', ')}`);
+        if (mascotas.length > 1) {
+            console.log(`Dueño: ${documento}, Mascotas: ${mascotas.join(', ')}`);
+        }
     }
 }
 
@@ -260,15 +262,30 @@ function buscarMascota(arrayMascotas) {
 //Función para actualizar información
 function actualizarInformación(arrayMascotas) {
     listarMascotas(arrayMascotas);
-    let optionMascota = parseInt(prompt("Digite el número de la mascota que desea actualizar: "))
-    console.log("Digite la opción que desea actualizar: ");
-    let claves = Object.keys(arrayMascotas[0])
-    claves.forEach(function (clave, i) {
-        console.log(`${i + 1}. ${(clave.replace(/([a-z])([A-Z])/g, '$1 $2')).toLocaleLowerCase()}`);
-    });
-    let opcionActualizar = parseInt(prompt("Digite la opción que desea actualizar: "))
-    claves[opcionActualizar-1]
+    let opcionMascota = 0;
+    do {
+        opcionMascota = parseInt(prompt("Digite el número de la mascota que desea actualizar: "))-1;
+        let valorActualizar;
 
+        //Obtener array de claves
+        let claves = Object.keys(arrayMascotas[0])
+        claves.forEach(function (clave, i) {
+            console.log(`${i + 1}. ${(clave.replace(/([a-z])([A-Z])/g, '$1 $2')).toLocaleLowerCase()}`);
+        });
+
+        let opcionActualizar = parseInt(prompt("Digite la opción que desea actualizar: "))-1
+
+        if (opcionActualizar  == 3) {
+            valorActualizar = definirEdad()
+        }else if(opcionActualizar  == 5){
+            valorActualizar = definirEstadoMascota()
+        }else if(opcionActualizar < 10){
+            valorActualizar  = prompt("Digite el valor actualizado: ")
+        }
+        let mascotaActualizar = arrayMascotas[opcionMascota];
+        let claveActualizar = claves[opcionActualizar]
+        mascotaActualizar[claveActualizar] = valorActualizar;
+    } while (opcionMascota > 10);
 }
 
 //Función para eliminar mascotas
