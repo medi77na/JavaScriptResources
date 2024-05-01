@@ -10,7 +10,8 @@ let mascotas = [
         nombrePropietario: "David Medina",
         documentoPropietario: "12345",
         telefonoPropietario: "54321",
-        correoPropietario: "davidmedina@gmail.com"
+        correoPropietario: "davidmedina@gmail.com",
+        imagen:"./public/img/dobermanLuna.webp"
     },
     {
         nombre: "Toby",
@@ -22,7 +23,8 @@ let mascotas = [
         nombrePropietario: "Laura González",
         documentoPropietario: "987",
         telefonoPropietario: "987654321",
-        correoPropietario: "lauragonzalez@gmail.com"
+        correoPropietario: "lauragonzalez@gmail.com",
+        imagen:"https://i.pinimg.com/originals/bb/30/86/bb3086e0facb35a5ff3b5418d116fc25.jpg"
     },
     {
         nombre: "Whiskers",
@@ -34,7 +36,8 @@ let mascotas = [
         nombrePropietario: "Carlos Pérez",
         documentoPropietario: "567890123",
         telefonoPropietario: "567890123",
-        correoPropietario: "carlosperez@gmail.com"
+        correoPropietario: "carlosperez@gmail.com",
+        imagen:"https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly9hc3NldHMucGlwcGEuaW8vc2hvd3MvNjNkMTRhYjkxMzc0MTUwMDExOTI3ZTA4LzE2NzU2MTYyOTg1ODctNTY4MWNjZjI0MDM2YjIyMDcxNDQzYjA2YjQ4ODI4MzkuanBlZw%3D%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D"
     },
     {
         nombre: "Buddy",
@@ -46,7 +49,8 @@ let mascotas = [
         nombrePropietario: "David Medina",
         documentoPropietario: "12345",
         telefonoPropietario: "54321",
-        correoPropietario: "davidmedina@gmail.com"
+        correoPropietario: "davidmedina@gmail.com",
+        imagen:"https://i.pinimg.com/474x/11/67/6d/11676d019a6511bc1026f7e7c98c5679.jpg"
     },
     {
         nombre: "Simba",
@@ -58,7 +62,8 @@ let mascotas = [
         nombrePropietario: "María Rodríguez",
         documentoPropietario: "345678901",
         telefonoPropietario: "345678901",
-        correoPropietario: "mariarodriguez@gmail.com"
+        correoPropietario: "mariarodriguez@gmail.com",
+        imagen:"https://img.stablecog.com/insecure/256w/aHR0cHM6Ly9iLnN0YWJsZWNvZy5jb20vOTAxOTUwODUtYjMwZS00MDkzLWEwYmUtYWViODEwZDM5YzIxLmpwZWc.webp"
     },
     {
         nombre: "Rocky",
@@ -70,7 +75,8 @@ let mascotas = [
         nombrePropietario: "David Medina",
         documentoPropietario: "12345",
         telefonoPropietario: "54321",
-        correoPropietario: "davidmedina@gmail.com"
+        correoPropietario: "davidmedina@gmail.com",
+        imagen:"https://tucachorrotienda.com/wp-content/uploads/2019/05/bulldog-frances-cachorros3.jpg"
     },
     {
         nombre: "Coco",
@@ -82,7 +88,8 @@ let mascotas = [
         nombrePropietario: "Laura González",
         documentoPropietario: "987",
         telefonoPropietario: "987654321",
-        correoPropietario: "lauragonzalez@gmail.com"
+        correoPropietario: "lauragonzalez@gmail.com",
+        imagen:"https://pbs.twimg.com/profile_images/741386784324653056/5Inb5QtV_400x400.jpg"
     },
     {
         nombre: "Bella",
@@ -94,7 +101,8 @@ let mascotas = [
         nombrePropietario: "Elena Martínez",
         documentoPropietario: "901234567",
         telefonoPropietario: "901234567",
-        correoPropietario: "elenamartinez@gmail.com"
+        correoPropietario: "elenamartinez@gmail.com",
+        imagen:"https://img.stablecog.com/insecure/256w/aHR0cHM6Ly9iLnN0YWJsZWNvZy5jb20vNDQzZTAzNmEtODA3ZC00MGQ0LWJlZDQtNDcwODJjMDA4YmMxLmpwZWc.webp"
     },
     {
         nombre: "Max",
@@ -106,7 +114,8 @@ let mascotas = [
         nombrePropietario: "Mario Pérez",
         documentoPropietario: "678901234",
         telefonoPropietario: "678901234",
-        correoPropietario: "marioperez@gmail.com"
+        correoPropietario: "marioperez@gmail.com",
+        imagen:"https://static.wixstatic.com/media/e89b0b_7b3520a3015b4cde965798f4855c288b~mv2.jpg/v1/fill/w_256,h_256,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/e89b0b_7b3520a3015b4cde965798f4855c288b~mv2.jpg"
     },
     {
         nombre: "Sasha",
@@ -118,7 +127,8 @@ let mascotas = [
         nombrePropietario: "Lucía Rodríguez",
         documentoPropietario: "789012345",
         telefonoPropietario: "789012345",
-        correoPropietario: "luciarodriguez@gmail.com"
+        correoPropietario: "luciarodriguez@gmail.com",
+        imagen:"https://img.stablecog.com/insecure/256w/aHR0cHM6Ly9iLnN0YWJsZWNvZy5jb20vMmNjOGUxZDUtMmU0NC00ZjcwLTkwNWUtYzYxYzc4ZmIzMDFiLmpwZWc.webp"
     }
 ];
 
@@ -146,7 +156,8 @@ function agregarMascota(arrayMascotas) {
         nombrePropietario: prompt("Ingrese el nombre del propietario de la mascota: "),
         documentoPropietario: prompt("Ingrese el documento del propietario de la mascota: "),
         telefonoPropietario: prompt("Ingrese el teléfono del propietario de la mascota: "),
-        correoPropietario: prompt("Ingrese el correo del propietario de la mascota: ")
+        correoPropietario: prompt("Ingrese el correo del propietario de la mascota: "),
+        imagen: prompt("Agrega la ruta de la imagen de tu mascota: ")
     })
     return arrayMascotas
 }
@@ -308,6 +319,34 @@ function eliminarMascota(arrayMascotas) {
     arrayMascotas.splice((opcion - 1), 1);
 }
 
+//Función para mostrar mascotas en html
+function mostrarMascotasHtml(arrayMascotas) {
+    const main = document.querySelector("main")
+    const header = document.querySelector("header");
+    const header__h1 = document.querySelector(".header__h1");
+
+
+    header.setAttribute("class", "text-center fs-3");
+    header__h1.setAttribute("class", "header__h1 text-primary");
+    main.setAttribute("class", "d-flex flex-wrap justify-content-center");
+
+    arrayMascotas.forEach(mascota => {
+
+        main.innerHTML += `
+            <div id="div_I" class="card m-3 border border-info p-4" style="width: 30%;">
+                <img src=${mascota.imagen} class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title">${mascota.nombre}</h5>
+                    <p class="card-text">
+                        <strong>Edad: </strong>${mascota.edad}<br>
+                        <strong>Raza: </strong>${mascota.raza}
+                    </p>
+                    <a href="#" class="btn btn-primary">Ver más</a>
+                </div>
+            </div>`
+        });
+}
+
 //Función para mostrar menú
 function mostrarMenu() {
 
@@ -355,8 +394,11 @@ function mostrarMenu() {
     } while (option != 8);
 }
 
+
+
 //EJECUCIÓN DEL PROGRAMA
-mostrarMenu()
+mostrarMenu(mascotas)
+mostrarMascotasHtml(mascotas)
 
 
 console.log("FIN DEL PROGRAMA");
