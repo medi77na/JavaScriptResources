@@ -1,7 +1,6 @@
 //INICIO DE LÓGICA DE PROGRAMA
 console.log("BIENVENIDOS AL SISTEMA DE GESTIÓN DE MASCOTAS");
 
-
 //DEFINICIÓN DE FUNCIONES
 
 //Función para mostrar el menú
@@ -92,21 +91,8 @@ function listarMascotas(arrayMascotas) {
     });
 }
 
-//Función para listar dueños
-function listarDuenos(arrayMascotas) {
-    arrayMascotas.forEach(function (mascota, i) {
-        console.log(
-            `Dueño # ${i + 1}:
-            Nombre: ${mascota.propietario.nombre},
-            Documento: ${mascota.propietario.documento},
-            Teléfono: ${mascota.propietario.telefono},
-            Email: ${mascota.propietario.correo}`
-        );
-    });
-}
-
-//Función para mostrar mascotas con mismo dueño
-function identificarMascotasMismoDueno(arrayMascotas) {
+// Función para identificar los dueños según documento
+function propietarioUnico(arrayMascotas) {
     let objDuenosMascotas = {};
 
     arrayMascotas.forEach(mascota => {
@@ -114,12 +100,29 @@ function identificarMascotasMismoDueno(arrayMascotas) {
             objDuenosMascotas[mascota.propietario.documento].mascotas.push(mascota.nombre);
         } else {
             objDuenosMascotas[mascota.propietario.documento] = {
-                nombrePropietario: mascota.propietario.nombre,
-                telefonoPropietario: mascota.propietario.telefono,
+                nombre: mascota.propietario.nombre,
+                documento: mascota.propietario.documento,
+                telefono: mascota.propietario.telefono,
                 mascotas: [mascota.nombre]
             };
-        }
+        };
     });
+    return objDuenosMascotas;
+}
+
+// Función para mostrar cada propietario
+function mostrarPropietario(arrayMascotas) {
+    let propietarios = Object.values(propietarioUnico(arrayMascotas))
+
+    propietarios.forEach((propietario, i) => {
+        console.log(`${i + 1})- ${propietario.nombre}\nDocumento: ${propietario.documento}`);
+    });
+}
+
+//Función para mostrar mascotas con mismo dueño
+function identificarMascotasMismoDueno(arrayMascotas) {
+
+    let objDuenosMascotas = propietarioUnico(arrayMascotas);
 
     // Mostrar los nombres y teléfonos de los propietarios junto con las mascotas que repiten
     for (const documento in objDuenosMascotas) {
@@ -182,7 +185,7 @@ function mostrarPropiedadesMascotas(arrayMascotas) {
 function actualizarPropiedadesMascota(arrayMascotas) {
 
     listarMascotas(arrayMascotas)
-    let opcionMascota = parseInt(prompt("Digite el número de mascota a actualizar: "))-1;
+    let opcionMascota = parseInt(prompt("Digite el número de mascota a actualizar: ")) - 1;
 
     mostrarPropiedadesMascotas(arrayMascotas);
     let opcionPropiedadMascota = parseInt(prompt("¿Qué propiedad desea actualizar?\nDigite el número de la propiedad: ")) - 1;
@@ -202,6 +205,44 @@ function actualizarPropiedadesMascota(arrayMascotas) {
     alert("VALOR ACTUALIZADO CON ÉXITO!")
 }
 
+// Función para obtener llaves únicas de propietario
+function obtenerLlavesPropietario(arrayMascotas) {
+    let llavesPropietario = Object.keys(arrayMascotas[0].propietario)
+    return llavesPropietario
+}
+
+// Función para mostrar las llaves del propietario
+function mostrarLlavesPropietario(arrayMascotas) {
+    let llavesPropietario = obtenerLlavesPropietario(arrayMascotas)
+    llavesPropietario.forEach((propiedad, i) => {
+        console.log(`${i + 1})- ${propiedad}`);
+    });
+}
+
+// Funcion para actualizar los datos del propietario
+function actualizarPropietario(arrayMascotas) {
+    mostrarPropietario(arrayMascotas)
+    let opcionPropietario = parseInt(prompt("Digite el número del propietario que desea actualizar: ")) - 1
+
+    mostrarLlavesPropietario(arrayMascotas)
+    let valorPropiedad = parseInt(prompt("Digite el número de la propiedad que desea actualizar: ")) - 1
+    let nuevoValor = prompt("Digite el valor actualizado: ")
+
+    let propietarios = Object.keys(propietarioUnico(arrayMascotas))
+    //Toma el documento del propietario
+    let propietarioActualizado = propietarios[opcionPropietario]
+
+    //Tomar la clave a actualizar
+    let claveActualizar = obtenerLlavesPropietario(arrayMascotas)[valorPropiedad];
+
+    for (const key in arrayMascotas) {
+        if (arrayMascotas[key].propietario.documento == propietarioActualizado) {
+
+            arrayMascotas[key].propietario[claveActualizar] = nuevoValor
+        }
+    }
+}
+
 //Función para actualizar información general
 function actualizarInformación(arrayMascotas) {
     let opcion = undefined;
@@ -212,12 +253,16 @@ function actualizarInformación(arrayMascotas) {
             case 1:
                 actualizarPropiedadesMascota(arrayMascotas);
                 break;
+            case 2:
+                actualizarPropietario(arrayMascotas)
+                break;
 
             default:
+                console.error("OPCIÓN INCORRECTA.")
                 break;
         }
 
-    } while (condition);
+    } while (opcion > 2);
 
 
 
@@ -303,7 +348,7 @@ function mostrarMenu() {
                 break;
             case 3:
                 console.log("Lista Dueños");
-                listarDuenos(mascotas);
+                mostrarPropietario(mascotas);
                 break;
             case 4:
                 console.log("Lista mascotas dueños repetidos");
@@ -330,8 +375,6 @@ function mostrarMenu() {
         }
     } while (option != 8);
 }
-
-
 
 //EJECUCIÓN DEL PROGRAMA
 mostrarMenu(mascotas)
